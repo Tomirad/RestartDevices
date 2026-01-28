@@ -18,7 +18,7 @@ if ($null -eq $devices) {
     exit
 }
 
-Write-Host "Rozpoczynam procedurę restartu dla $($devices.Count) urządzeń..." -ForegroundColor Cyan
+Write-Host "Rozpoczynam procedurę restartu dla $($devices.Count) urządzeń . . ." -ForegroundColor Cyan
 
 # --- FOR 1: DISABLE DEVICES ---
 foreach ($dev in $devices) {
@@ -26,7 +26,7 @@ foreach ($dev in $devices) {
     pnputil /disable-device "$($dev.InstanceId)" | Out-Null
 }
 
-Write-Host "Oczekiwanie (do 2 sekund) na zwolnienie zasobów . . ." -ForegroundColor Gray
+Write-Host "Oczekiwanie (ok. 2 sekund) na zwolnienie zasobów . . ." -ForegroundColor Gray
 Start-Sleep -Seconds 2
 
 # --- FOR 2: ENABLE DEVICES ---
@@ -35,4 +35,4 @@ foreach ($dev in $devices) {
     pnputil /enable-device "$($dev.InstanceId)" | Out-Null
 }
 
-#Read-Host -Prompt "ENTER, aby zamknąć okno . . ." Green
+#Read-Host -Prompt "ENTER, aby zamknąć okno . . ."
